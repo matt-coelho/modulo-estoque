@@ -21,7 +21,7 @@ async function read(entidade, conn) {
 }
 
 async function readAll(conn) {
-  const sql = "select id, logradouro, numero, complemento, bairro, cidade, codigo_postal, referencia from enderecos"
+  const sql = "select id, logradouro, numero, complemento, bairro, cidade, codigo_postal, referencia from enderecos order by cidade, bairro, logradouro, numero"
   const res = await conn.query(sql)
   return res.rows
 }

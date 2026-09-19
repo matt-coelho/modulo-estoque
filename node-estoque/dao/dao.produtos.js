@@ -20,7 +20,7 @@ async function read(entidade, conn) {
 }
 
 async function readAll(entidade, conn) {
-  let sql = `select codigo, descricao, preco, custo, estoque, categoria, id_produto, id_categoria, id_almoxarifado from vw_estoque_produto_almoxarifado`
+  let sql = `select codigo, descricao, preco, custo, estoque, categoria, almoxarifado, id_produto, id_categoria, id_almoxarifado from vw_estoque_produto_almoxarifado`
   let values = []
   
   if(entidade.id_categoria){
@@ -35,7 +35,8 @@ async function readAll(entidade, conn) {
       sql += ` where id_almoxarifado = $1`
       values.push(entidade.id_almoxarifado)
     }
-  }  
+  }
+  sql += ` order by codigo`
   const res = await conn.query(sql, values)
   return res.rows
 }

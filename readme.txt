@@ -128,6 +128,10 @@ Endpoints
 -delete /almoxarifados/uuid
 -----------------------------------------------------------------------------
 -get /movimentacoes/id_almoxarifado(uuid)?id_produto=uuid
+-get /movimentacoes/resumo/geral
+-get /movimentacoes/resumo/concentrado
+-get /movimentacoes/resumo/produtos
+-get /movimentacoes/resumo/categoria
 -post /movimentacoes
 {
     "id_produto" : "uuid",

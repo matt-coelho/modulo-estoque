@@ -53,4 +53,68 @@ async function read(req, res, next) {
   }
 }
 
-export default { create, read, }
+async function read_estoque_geral(req, res, next) {
+  try {
+    const resp = await service.read_estoque_geral()
+    if (!resp) {
+      res.status(404).json({
+        status: "falhou",
+        message: "Ops... Algo deu errado.",
+      })
+    } else {
+      res.send(resp)
+    }
+  } catch (err) {
+    next(err)
+  }
+}
+
+async function read_concentrado_custovenda(req, res, next) {
+  try {
+    const resp = await service.read_concentrado_custovenda()
+    if (!resp) {
+      res.status(404).json({
+        status: "falhou",
+        message: "Ops... Algo deu errado.",
+      })
+    } else {
+      res.send(resp)
+    }
+  } catch (err) {
+    next(err)
+  }
+}
+
+async function read_top_produtos(req, res, next) {
+  try {
+    const resp = await service.read_top_produtos()
+    if (!resp) {
+      res.status(404).json({
+        status: "falhou",
+        message: "Ops... Algo deu errado.",
+      })
+    } else {
+      res.send(resp)
+    }
+  } catch (err) {
+    next(err)
+  }
+}
+
+async function read_resumo_categoria(req, res, next) {
+  try {
+    const resp = await service.read_resumo_categoria()
+    if (!resp) {
+      res.status(404).json({
+        status: "falhou",
+        message: "Ops... Algo deu errado.",
+      })
+    } else {
+      res.send(resp)
+    }
+  } catch (err) {
+    next(err)
+  }
+}
+
+export default { create, read, read_estoque_geral, read_concentrado_custovenda, read_top_produtos, read_resumo_categoria }

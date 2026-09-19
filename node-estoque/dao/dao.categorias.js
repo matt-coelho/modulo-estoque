@@ -13,7 +13,7 @@ async function read(entidade, conn) {
 }
 
 async function readAll(conn) {
-  const sql = "select id, nome from categorias"
+  const sql = "select id, nome from categorias order by nome"
   const res = await conn.query(sql)
   return res.rows
 }

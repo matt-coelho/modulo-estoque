@@ -80,3 +80,59 @@ create or replace view vw_estoque_produto_almoxarifado as
 	join categorias c on p.id_categoria = c.id
 	left join estoque e on e.id_produto = p.id
 	left join almoxarifados a on e.id_almoxarifado = a.id;
+	
+create or replace view vw_concentrado_estoque_custo_venda as
+select a.nome as almoxarifado,
+	count(distinct e.id_produto) as qtd_produtos_distintos,
+	coalesce(sum(e.quantidade), 0) as qtd_itens_total,
+	coalesce(sum(e.quantidade * p.custo), 0) as valor_total_custo,
+	coalesce(sum(e.quantidade * p.preco), 0) as valor_total_venda,
+	coalesce(sum(e.quantidade * (p.preco - p.custo)), 0) as margem_potencial
+from almoxarifados a
+left join estoque e on e.id_almoxarifado = a.id and e.quantidade > 0
+left join produtos p on p.id = e.id_produto
+group by a.id, a.nome
+order by valor_total_venda desc;
+
+create or replace view vw_resumo_estoque_geral as
+select
+	count(distinct e.id_produto) as qtd_produtos_distintos,
+	count(distinct e.id_almoxarifado) as qtd_almoxarifados,
+	coalesce(sum(e.quantidade), 0) as qtd_itens_total,
+	coalesce(sum(e.quantidade * p.custo), 0) as valor_total_custo,
+	coalesce(sum(e.quantidade * p.preco), 0) as valor_total_venda,
+	coalesce(sum(e.quantidade * (p.preco - p.custo)), 0) as margem_potencial
+from estoque e
+join produtos p on p.id = e.id_produto
+where e.quantidade > 0;
+
+create or replace view vw_top_produtos_valor_estoque as
+select
+	p.id as id_produto,
+	p.codigo,
+	p.descricao,
+	c.nome as categoria,
+	sum(e.quantidade) as quantidade_total,
+	sum(e.quantidade * p.custo) as valor_total_custo,
+	sum(e.quantidade * p.preco) as valor_total_venda
+from estoque e
+join produtos p on p.id = e.id_produto
+join categorias c on c.id = p.id_categoria
+where e.quantidade > 0
+group by p.id, p.codigo, p.descricao, c.nome
+order by valor_total_custo desc
+limit 20;
+
+create or replace view vw_resumo_estoque_categoria as
+select
+	c.id as id_categoria,
+	c.nome as categoria,
+	count(distinct e.id_produto) as qtd_produtos_distintos,
+	coalesce(sum(e.quantidade), 0) as qtd_itens_total,
+	coalesce(sum(e.quantidade * p.custo), 0) as valor_total_custo,
+	coalesce(sum(e.quantidade * p.preco), 0) as valor_total_venda
+from categorias c
+left join produtos p on p.id_categoria = c.id
+left join estoque e on e.id_produto = p.id and e.quantidade > 0
+group by c.id, c.nome
+order by valor_total_venda desc;
