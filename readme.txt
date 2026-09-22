@@ -8,8 +8,11 @@ O sistema permite cadastrar produtos, categorias, enderecos e almoxarifados, alÃ
 nodejs 22.18.0 || >=24.12.0
 postgresql 9.4
 
+local
 node npm run main
 vue  npm run dev / build + preview
+docker
+docker compose up -d --build
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 Endpoints
