@@ -1,11 +1,21 @@
 import db from '../db/db.js'
 import repository from "../dao/dao.movimentacoes.js"
+import repositoryEstoque from "../dao/dao.estoque.js"
 
 async function create(entidade) {
     let conn
     try {
+        if(entidade.quantidade <= 0){
+            throw new Error("Quantidade a movimentar inválida")
+        }
         conn = await db.connect()
         await conn.query('BEGIN')
+        if(entidade.tipo == 'S'){
+            const est = await repositoryEstoque.read(entidade, conn)
+            if(!est || entidade.quantidade > Number(est.quantidade)){
+                throw new Error("Estoque insuficiente para realizar a movimentação")
+            }
+        }
         const resp = await repository.create(entidade, conn)
         await conn.query('COMMIT')
         return resp

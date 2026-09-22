@@ -1,5 +1,16 @@
-node run: npm run main
-vue  run: 
+Módulo de Controle de Estoque
+
+Aplicação desenvolvida para demonstrar uma implementação completa de controle de estoque por almoxarifado, utilizando Vue.js no frontend, Node.js no backend e PostgreSQL para persistência.
+
+O sistema permite cadastrar produtos, categorias, enderecos e almoxarifados, além de registrar entradas e saídas e consultar o histórico e os resumos das movimentações.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+nodejs 22.18.0 || >=24.12.0
+postgresql 9.4
+
+node npm run main
+vue  npm run dev / build + preview
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 Endpoints
 
@@ -140,3 +151,5 @@ Endpoints
     "quantidade": 10,
     "observacao": ""    
 }
+-----------------------------------------------------------------------------
+-get /estoque/id_almoxarifado(uuid)?id_produto=uuid

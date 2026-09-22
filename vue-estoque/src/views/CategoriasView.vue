@@ -63,7 +63,7 @@ export default {
         await this.getData()
       } catch (error) {
         console.log(error)
-        alert(`Erro ao salvar. ${error.message}`)
+        alert(`Erro ao salvar. ${error.response.data.error}`)
       }
     },
   },
