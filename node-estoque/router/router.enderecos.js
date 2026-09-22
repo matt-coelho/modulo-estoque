@@ -11,6 +11,6 @@ router.get("/:id", controller.read)
 
 router.put("/", controller.update)
 
-//router.delete("/:id", controller.remove)
+router.delete("/:id", controller.remove)
 
 export default router

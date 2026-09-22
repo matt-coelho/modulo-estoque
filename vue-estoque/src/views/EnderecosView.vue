@@ -125,7 +125,6 @@ export default {
       if (!confirm("Tem certeza que deseja remover este item?")) return
       let resp
       try {
-        console.log(id)
         resp = await axios.delete(`${import.meta.env.VITE_API_ENDERECOS_URL}/${id}`)
         if(resp.status == 200 || resp.status == 204){
           this.data = this.data.filter((endereco) => endereco.id !== id)
