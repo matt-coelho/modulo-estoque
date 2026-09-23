@@ -7,8 +7,8 @@
       </button>
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-      <div class="accordion-body">
-        <table class="table table table-sm">
+      <div class="accordion-body table-responsive">
+        <table class="table table-sm">
             <thead>
                 <tr>
                     <th scope="col">Almoxarifado</th>
@@ -56,8 +56,8 @@
       </button>
     </h2>
     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
-      <div class="accordion-body">
-        <table class="table table table-sm">
+      <div class="accordion-body table-responsive">
+        <table class="table table-sm">
             <thead>
                 <tr>
                     <th scope="col">Código</th>
@@ -105,8 +105,8 @@
       </button>
     </h2>
     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show">
-      <div class="accordion-body">
-        <table class="table table table-sm">
+      <div class="accordion-body table-responsive">
+        <table class="table table-sm">
             <thead>
                 <tr>
                     <th scope="col">Categoria</th>

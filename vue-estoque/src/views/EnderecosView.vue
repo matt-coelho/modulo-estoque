@@ -43,7 +43,7 @@
         <button type="button" class="btn btn-secondary" @click="limparForm">Limpar</button>
       </form>
     </div>
-    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+    <div class="tab-pane fade table-responsive" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
       <table class="table table-striped table-hover">
         <thead>
           <tr>
